@@ -1,16 +1,18 @@
 <h1>Tasks:</h1>
 
 <table>
-  <tr>
-
-  <tr>
-
   <% @tasks.each do |task| %>
     <tr>
-      <td> <%= check_box_tag "completed", "1", task.completed %></td>
-      <td><%= task.name %></td>     
+      <td>
+        <%= form_for task do |f|%>
+          <%= f.check_box :completed %>
+          <%= f.submit %>
+        <% end %>
+      </td>
+      <td><%= task.name %></td> 
+      <td> <%= button_to "Delete", task, method: :delete %> </td>
     </tr>
   <% end %> 
 </table>
 
-<a href="#" id="add-task-link">+ Add task</a>
+<%= link_to "+ Add task", new_task_path %>
