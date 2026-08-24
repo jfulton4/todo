@@ -1,0 +1,16 @@
+<h1>Tasks:</h1>
+
+<table>
+  <tr>
+
+  <tr>
+
+  <% @tasks.each do |task| %>
+    <tr>
+      <td> <%= check_box_tag "completed", "1", task.completed %></td>
+      <td><%= task.name %></td>     
+    </tr>
+  <% end %> 
+</table>
+
+<a href="#" id="add-task-link">+ Add task</a>
