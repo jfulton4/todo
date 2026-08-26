@@ -20,6 +20,7 @@ gem 'nokogiri', '1.13.10'
 gem 'loofah', '2.19.1'
 gem 'rails-html-sanitizer', '1.5.0'
 gem 'mail', '2.6.4'
+gem 'devise'
 
 # After changing compatibility pins, run:
 # bundle _1.17.3_ install
