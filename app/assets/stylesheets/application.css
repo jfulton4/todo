@@ -63,3 +63,20 @@ li {
 .delete-btn:hover {
   color: #e5484d;
 }
+
+.flash {
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.flash.notice {
+  background: #17301f;
+  color: #7ee2a8;
+}
+
+.flash.alert {
+  background: #34191b;
+  color: #ff9592;
+}
