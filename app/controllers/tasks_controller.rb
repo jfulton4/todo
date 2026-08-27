@@ -17,15 +17,14 @@ class TasksController < ApplicationController
 
   def update
     @task = current_user.tasks.find(params[:id])
-    # Did not check update with a conditional because update uses a checkbox
-    # Good practice to use conditionals if validation fails
-    @task.update(task_params)
-    redirect_to tasks_path, notice: "Task updated successfully."
+    if @task.update(task_params)
+      redirect_to tasks_path, notice: "Task updated successfully."
+    else
+      redirect_to tasks_path, alert: "Could not update task."
+    end
   end
 
   def index
-    # did current_user.tasks.all, a remnant from User.tasks.all
-    # When checking for this specific user, you only need current_user.tasks
     @tasks = current_user.tasks
   end
 
