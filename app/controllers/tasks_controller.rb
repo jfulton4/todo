@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     @task = current_user.tasks.new(task_params)
 
     if @task.save
-      redirect_to tasks_path, notice: "Task created successfully."
+      redirect_to tasks_path
     else
       render :new
     end
@@ -18,7 +18,7 @@ class TasksController < ApplicationController
   def update
     @task = current_user.tasks.find(params[:id])
     if @task.update(task_params)
-      redirect_to tasks_path, notice: "Task updated successfully."
+      redirect_to tasks_path
     else
       redirect_to tasks_path, alert: "Could not update task."
     end
@@ -35,7 +35,7 @@ class TasksController < ApplicationController
   def destroy
     @task = current_user.tasks.find(params[:id])
     @task.destroy
-    redirect_to tasks_path, notice: "Task deleted successfully."
+    redirect_to tasks_path
   end
 
   private
