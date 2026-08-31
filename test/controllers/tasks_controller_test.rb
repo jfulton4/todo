@@ -5,7 +5,6 @@ class TasksControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
     @other_user = users(:two)
-    @task = tasks(:one)
 
     sign_in @user
   end
@@ -50,5 +49,23 @@ class TasksControllerTest < ActionController::TestCase
         delete :destroy, id: other_task.id
       end
     end
+  end
+
+  test "index only loads the current users tasks" do
+    get :index
+
+    assert_includes assigns(:tasks), tasks(:one)
+    assert_not_includes assigns(:tasks), tasks(:two)
+  end
+
+  test "cannot assign a task to another user" do
+    post :create, task: {
+      name: "Injected ownership",
+      completed: false,
+      user_id: @other_user.id
+    }
+
+    created_task = Task.order(:id).last
+    assert_equal @user, created_task.user
   end
 end

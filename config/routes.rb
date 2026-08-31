@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  namespace :api do
+  get 'tasks/index'
+  end
+
+  namespace :api do
+  get 'tasks/create'
+  end
+
+  namespace :api do
+  get 'tasks/update'
+  end
+
+  namespace :api do
+  get 'tasks/destroy'
+  end
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
