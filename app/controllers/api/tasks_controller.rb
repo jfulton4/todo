@@ -21,6 +21,7 @@ class Api::TasksController < ApplicationController
       render json: @task
     else
       render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def destroy
