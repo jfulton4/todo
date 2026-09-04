@@ -4,7 +4,6 @@ class Api::V1::BaseController < ApplicationController
 
   rescue_from ActiveRecord::RecordNotFound,             with: :not_found
   rescue_from ActionController::ParameterMissing,       with: :bad_request
-  rescue_from ActionDispatch::ParamsParser::ParseError, with: :bad_request
 
   private
 
@@ -14,5 +13,9 @@ class Api::V1::BaseController < ApplicationController
 
   def bad_request(exception)
     render json: { error: exception.message }, status: :bad_request
+  end
+
+  def current_owner
+    @current_owner ||= doorkeeper_token&.application&.owner
   end
 end

@@ -2,11 +2,11 @@ class Api::V1::TasksController < Api::V1::BaseController
   before_action :set_task, only: [:update, :destroy]
 
   def index
-    render json: current_user.tasks
+    render json: current_owner.tasks
   end
 
   def create
-    task = current_user.tasks.new(task_params)
+    task = current_owner.tasks.new(task_params)
 
     if task.save
       render json: task, status: :created
@@ -31,7 +31,7 @@ class Api::V1::TasksController < Api::V1::BaseController
   private
 
   def set_task
-    @task = current_user.tasks.find(params[:id])
+    @task = current_owner.tasks.find(params[:id])
   end
 
   def task_params
