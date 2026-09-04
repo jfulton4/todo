@@ -1,5 +1,4 @@
-class Api::TasksController < ApplicationController
-  before_action :authenticate_user!
+class Api::V1::TasksController < Api::V1::BaseController
   before_action :set_task, only: [:update, :destroy]
 
   def index
